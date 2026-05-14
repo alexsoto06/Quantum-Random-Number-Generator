@@ -1,0 +1,2 @@
+qdk[jupyter]
+matplotlib
