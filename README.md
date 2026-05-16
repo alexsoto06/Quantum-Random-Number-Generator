@@ -1,10 +1,74 @@
-# Quantum-Random-Number-Generator
+# Quantum Random Number Generator
 
+## 🌐 Live Web App
+👉 https://quantumrng-deheerfyanaxgcc3.canadacentral-01.azurewebsites.net/
 
-[![Run on Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alexsoto06/Quantum-Random-Number-Generator/HEAD?labpath=quantum-random-number-generator.ipynb)
+---
 
-## Run it
-- Click the Binder badge above
-- In Jupyter: Run → Run All
+## 🧪 Notebook Demo (Binder)
+https://mybinder.org/badge_logo.svg](https://mybinder.org/v2/gh/alexsoto06/Quantum-Random-Number-Generator/HEAD?labpath=quantum-random-number-generator.ipynb)
 
-A quantum random number generator built with Microsoft QDK and Q#. It uses qubit superposition and measurement to generate true random bits, combines them into numbers, and visualizes the distribution using Python.
+Click the badge above → Run → Run All in Jupyter
+
+---
+
+## 📌 Overview
+
+This project demonstrates how to generate random numbers using quantum computing principles with Microsoft QDK (Q#), then visualize the results through a Python-based web application.
+
+The application builds random integers by:
+- Creating qubits in superposition
+- Measuring them to produce random bits
+- Combining those bits into numerical values
+- Visualizing the distribution using Python plotting
+
+---
+
+## ⚙️ Tech Stack
+
+- **Q# (Microsoft QDK)** – quantum operations for random bit generation  
+- **Python** – orchestration + data processing  
+- **Streamlit** – interactive web UI  
+- **Matplotlib** – visualization  
+- **Azure App Service (Linux)** – cloud deployment  
+- **GitHub Actions** – CI/CD pipeline  
+
+---
+
+## 🧠 Architecture
+
+This project uses a hybrid architecture:
+
+- The Streamlit app handles user interaction and visualization  
+- A separate worker process (`qrng_worker.py`) executes Q# operations  
+
+### Why use a worker?
+
+Streamlit reruns the entire script on every user interaction and may use different threads for execution.
+
+The Q# runtime is thread-bound and cannot safely move between threads.
+
+To solve this:
+- Q# logic runs inside a separate Python process
+- Each request gets a clean interpreter + execution context
+- Results are returned to the main app via JSON
+
+---
+
+## 🚀 Features
+
+- Adjustable random number range  
+- Configurable number of samples  
+- True quantum-based randomness via Q#  
+- Histogram visualization of output distribution  
+- Fully deployed, publicly accessible web application  
+
+---
+
+## ▶️ Run Locally
+
+Clone the repo:
+
+```bash
+git clone https://github.com/alexsoto06/Quantum-Random-Number-Generator.git
+cd Quantum-Random-Number-Generator
